@@ -117,7 +117,7 @@ body {
 
 .content-wrapper {
      padding: 40px 50px; 
-         border: 10px solid red;
+         /* border: 10px solid red; */
          padding: 60px 245px;
 
     }
@@ -170,14 +170,17 @@ body {
 /* Updated Stats Bar Container */
 .stats-bar {
       background: #ffffff;
-    border: 1px solid #e1e4e8;
+    /* border: 1px solid #e1e4e8; */
+     /* border: 10px solid red; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* background: transparent;  */
-    padding: 20px 0;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #e1e4e8; /* Optional subtle separator */
+    /* padding: 10px 0; */
+    
+    margin: 24px;
+    /* border-bottom: 1px solid #e1e4e8; */
+    
 }
 
 .stats-left {
@@ -273,9 +276,14 @@ body {
     gap: 20px;
     background: #ffffff;
     border: 1px solid #e1e4e8;
+     /* border: 10px solid red; */
     padding: 20px;
 }
-
+.mine{
+     /* border: 10px solid red; */
+     background: #ffffff;
+    border: 1px solid #e1e4e8;
+}
 .issue-card {
     background: white;
     border: 1px solid var(--border-color);
