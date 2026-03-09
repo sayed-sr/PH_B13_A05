@@ -570,6 +570,8 @@ body {
     transition: border-color 0.2s;
 }
 
+
+
 .search-container input:focus {
     outline: none;
     border-color: var(--primary-color);
