@@ -561,6 +561,8 @@ body {
     cursor: pointer;
 }
 
+
+
 .search-container input {
     padding: 8px 16px;
     border: 1px solid var(--border-color);
