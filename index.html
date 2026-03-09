@@ -8,112 +8,178 @@
     <link rel="stylesheet" href="media.css" />
 
   </head>
+
   <body>
     <div id="login-page" class="auth-container">
-      <div class="login-card">
-        <!-- <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="auth-logo"> -->
-        <img src="assets/github-logo.png" alt="GitHub Logo" class="auth-logo" />
+
+
+          <div class="login-card">
+
+
+        <img src="assets/github-logo.png"  class="auth-logo" />
+      
         <h1>GitHub Issues Tracker</h1>
         <p>Sign in to manage your issues</p>
 
         <form id="login-form">
-          <div class="input-group">
-            <label>Username</label>
+
+                 <div class="input-group">
+
+        <label>Username</label>
+
             <input
               type="text"
               id="username"
               placeholder="Enter Username"
               required
             />
+
+
             <small style="color: #4a00ff">Default: admin</small>
           </div>
+
+
           <div class="input-group">
-            <label>Password</label>
-            <input
+
+                <label>Password</label>
+           
+                <input
               type="password"
               id="password"
               placeholder="Enter Password"
               required
             />
+
+              
             <small style="color: #4a00ff">Default: admin123</small>
           </div>
+
+
           <button type="submit" class="btn-primary full-width">Sign In</button>
+
+
         </form>
 
+
         <div class="demo-credentials">
+
           <p>OR</p>
+
+
+         
           <div class="creds-box">
+
             <p>Demo Credentials:</p>
-            <strong>Username: admin</strong><br />
-            <strong>Password: admin123</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+
+         
+    <strong>Username: admin</strong><br />
+              <strong>Password: admin123</strong>
+
+
+                   </div>
+         </div>
+                     </div>
+</div>
 
 
 
 
     <div id="dashboard-page" class="hidden">
+
       <nav class="navbar">
-        <div class="nav-left">
-          <img
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            alt="Logo"
-            class="nav-logo"
+
+    <div class="nav-left">
+          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="nav-logo"
           />
           <span>GitHub Issues Tracker</span>
         </div>
-        <div class="nav-right">
-          <div class="search-box">
-           <input type="text" id="search-input" placeholder="Search issues..." />
+
+                       <div class="nav-right">
+    <div class="search-box">
+
+                      <input type="text" id="search-input" placeholder="Search issues..." />
+
 <button id="search-btn" class="btn-primary">Search</button>
+
           </div>
+
         </div>
+
       </nav>
 
-      <main class="content-wrapper">
-     <div class="tabs-container">
+         <main class="content-wrapper">
+
+    
+            <div class="tabs-container">
+
     <div class="filter-tabs">
-        <button class="tab active" data-filter="all">All</button>
-        <button class="tab" data-filter="open">Open</button>
+
+    <button class="tab active" data-filter="all">All</button>
+
+           <button class="tab" data-filter="open">Open</button>
+
+
         <button class="tab" data-filter="closed">Closed</button>
+   
     </div>
 </div>
+
 <div class="mine">
-        <div class="stats-bar">
-          <div class="stats-left">
+       
+    
+    <div class="stats-bar">
+                  <div class="stats-left">
             <img
               src="assets/Aperture.png"
-              alt="Aperture Icon"
+            
               class="stats-icon"
             />
-            <div class="stats-text">
+               <div class="stats-text">
               <h2 id="issue-count">50 Issues</h2>
+
               <p>Track and manage your project issues</p>
             </div>
+
+
+
+
           </div>
           <div class="stats-right">
             <div class="status-indicator">
               <span class="dot open-dot"></span> Open
             </div>
+
             <div class="status-indicator">
               <span class="dot closed-dot"></span> Closed
             </div>
+
+
           </div>
         </div>
 </div>
+
+
+
+
         <div id="loading-spinner" class="spinner hidden"></div>
+
         <div id="issues-grid" class="issues-grid"></div>
       </main>
     </div>
 
   <div id="issue-modal" class="modal hidden">
+
+
+
   <div class="modal-content">
     <h2 id="modal-title"></h2>
 
     <div class="modal-top-meta">
+
+
+         
       <span id="modal-status-badge" class="badge-opened">OPENED</span>
+      
       <span>Opened by <span id="modal-author"></span> • <span id="modal-date"></span></span>
     </div>
 
@@ -121,23 +187,33 @@
 
     <p id="modal-description"></p>
 
-    <div class="modal-data-box">
+       <div class="modal-data-box">
       <div>
+
+
+
         <small>Assignee:</small>
         <p id="modal-assignee" style="margin: 0;"></p>
       </div>
+
+
+
       <div style="text-align: right;">
         <small>Priority:</small><br>
         <span id="modal-priority-badge" style="display:inline-block; margin-top: 5px;"></span>
       </div>
+
+
+
+
     </div>
+
 
     <div class="modal-footer-right">
       <button id="close-modal">Close</button>
     </div>
   </div>
 </div>
-    <script src="script.js"></script>
     <script src="api.js"></script>
     <script src="main.js"></script>
   </body>
