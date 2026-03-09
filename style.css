@@ -116,7 +116,7 @@ body {
 }
 
 .content-wrapper {
-     padding: 40px 50px; 
+     /* padding: 40px 50px;  */
          /* border: 10px solid red; */
          padding: 60px 245px;
 
@@ -340,24 +340,7 @@ body {
     border-radius: 6px; float: right; cursor: pointer;
 }
 
-/* Spinner */
-.spinner {
-    width: 40px; height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .navbar { flex-direction: column; padding: 15px; }
-    .search-box { margin-top: 15px; }
-    .search-box input { width: 150px; }
-    .content-wrapper { padding: 20px; }
-}
 
 .status-toggle-icon {
     width: 22px;
