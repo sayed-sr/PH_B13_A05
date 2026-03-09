@@ -225,6 +225,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    
 }
 
 .dot {
@@ -268,8 +269,11 @@ body {
 
 .issues-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    background: #ffffff;
+    border: 1px solid #e1e4e8;
+    padding: 20px;
 }
 
 .issue-card {
@@ -281,9 +285,6 @@ body {
     cursor: pointer;
     transition: transform 0.2s;
 }
-
-.issue-card:hover { transform: translateY(-3px); }
-
 /* Category specific border */
 .card-open { border-top: 5px solid var(--open-color); }
 .card-closed { border-top: 5px solid var(--closed-color); }
