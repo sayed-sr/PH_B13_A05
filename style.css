@@ -115,18 +115,29 @@ body {
     margin-right: 10px;
 }
 
-.content-wrapper { padding: 40px 50px; }
+.content-wrapper {
+     padding: 40px 50px; 
+         border: 10px solid red;
+         padding: 60px 245px;
 
+    }
+
+
+
+    
 /* Container providing the white background and outer border */
 .tabs-container {
     background: #ffffff;
     border: 1px solid #e1e4e8;
+    /* border: 10px solid red; */
     border-radius: 8px;
     padding: 16px 24px; /* Matches the spacing in Frame 1000004601.png */
     margin-bottom: 24px;
 }
 
 .filter-tabs {
+        /* border: 10px solid red; */
+
     display: flex;
     gap: 12px; /* Spacing between the individual buttons */
 }
@@ -141,6 +152,7 @@ body {
     border: 1px solid #e1e4e8;
     background: #ffffff;
     color: #444d56;
+    /* border: 10px solid red; */
 }
 
 /* The active state styling (Purple) */
@@ -157,10 +169,12 @@ body {
 }
 /* Updated Stats Bar Container */
 .stats-bar {
+      background: #ffffff;
+    border: 1px solid #e1e4e8;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: transparent; /* Matches the clean screenshot look */
+    /* background: transparent;  */
     padding: 20px 0;
     margin-bottom: 30px;
     border-bottom: 1px solid #e1e4e8; /* Optional subtle separator */
@@ -170,6 +184,8 @@ body {
     display: flex;
     align-items: center;
     gap: 16px; /* Precise spacing between icon and text */
+    
+    
 }
 
 /* Updated Image Styling */
@@ -177,6 +193,7 @@ body {
     width: 64px; /* Scaled to match the screenshot proportion */
     height: 64px;
     object-fit: contain;
+    
 }
 
 .stats-text h2 {
@@ -184,6 +201,7 @@ body {
     font-weight: 700;
     color: #1f2328;
     margin: 0;
+    
 }
 
 .stats-text p {
@@ -199,6 +217,8 @@ body {
     font-size: 16px;
     font-weight: 600;
     color: #1f2328;
+    /* border: 10px solid red;  */
+    padding-right: 20px;
 }
 
 .status-indicator {
