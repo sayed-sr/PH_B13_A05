@@ -1,0 +1,531 @@
+:root {
+    --primary-color: #5833ff;
+    --bg-color: #f6f8fa;
+    --border-color: #d0d7de;
+    --text-main: #24292f;
+    --text-sub: #57606a;
+    --open-color: #2da44e;
+    --closed-color: #8250df;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+.hidden { display: none !important; }
+
+/* Auth Styling */
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+}
+
+.auth-logo { width: 60px; margin-bottom: 20px; }
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.full-width { width: 100%; }
+
+/* Dashboard Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.nav-logo { width: 30px; margin-right: 10px; }
+.nav-left { display: flex; align-items: center; font-weight: bold; }
+
+.search-box input {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 250px;
+    margin-right: 10px;
+}
+
+.content-wrapper { padding: 40px 50px; }
+
+/* Container providing the white background and outer border */
+.tabs-container {
+    background: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 16px 24px; /* Matches the spacing in Frame 1000004601.png */
+    margin-bottom: 24px;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 12px; /* Spacing between the individual buttons */
+}
+
+.tab {
+    padding: 10px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: 1px solid #e1e4e8;
+    background: #ffffff;
+    color: #444d56;
+}
+
+/* The active state styling (Purple) */
+.tab.active {
+    background-color: #5833ff; /* Matching the purple in the screenshots */
+    color: #ffffff;
+    border-color: #5833ff;
+}
+
+/* Hover effect for better UX */
+.tab:hover:not(.active) {
+    background-color: #f6f8fa;
+    border-color: #d1d5da;
+}
+/* Updated Stats Bar Container */
+.stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent; /* Matches the clean screenshot look */
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e1e4e8; /* Optional subtle separator */
+}
+
+.stats-left {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Precise spacing between icon and text */
+}
+
+/* Updated Image Styling */
+.stats-icon {
+    width: 64px; /* Scaled to match the screenshot proportion */
+    height: 64px;
+    object-fit: contain;
+}
+
+.stats-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2328;
+    margin: 0;
+}
+
+.stats-text p {
+    font-size: 16px;
+    color: #636c76;
+    margin: 4px 0 0 0;
+}
+
+/* Status Indicators (Right Side) */
+.stats-right {
+    display: flex;
+    gap: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2328;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.open-dot {
+    background-color: #00a96e; /* Matching the green in screenshot */
+}
+
+.closed-dot {
+    background-color: #a359ff; /* Matching the purple in screenshot */
+}
+
+/* Grid & Cards */
+
+
+
+/* 1. Add this NEW class for the manual toggle state */
+.issue-card.card-toggled-blue { 
+    border-top: 5px solid #0969da !important; /* GitHub Blue */
+}
+
+/* 2. Ensure the icon looks like a clickable button */
+.status-toggle-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10; /* Keeps it above the card click area */
+    transition: transform 0.1s ease;
+}
+
+.status-toggle-icon:active {
+    transform: scale(0.9); /* Visual feedback when clicked */
+}
+
+
+.issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.issue-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.issue-card:hover { transform: translateY(-3px); }
+
+/* Category specific border */
+.card-open { border-top: 5px solid var(--open-color); }
+.card-closed { border-top: 5px solid var(--closed-color); }
+
+.card-icon {
+    width: 18px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.issue-card h3 { font-size: 16px; margin: 0 0 10px 0; }
+.issue-card p { font-size: 14px; color: var(--text-sub); }
+
+.priority-tag {
+    float: right;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #f1f1f1;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 500px;
+    max-width: 90%;
+}
+
+.btn-close {
+    background: var(--primary-color);
+    color: white; border: none; padding: 10px 20px;
+    border-radius: 6px; float: right; cursor: pointer;
+}
+
+/* Spinner */
+.spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; padding: 15px; }
+    .search-box { margin-top: 15px; }
+    .search-box input { width: 150px; }
+    .content-wrapper { padding: 20px; }
+}
+
+.status-toggle-icon {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    position: relative; 
+    z-index: 10; /* Ensures it sits above the card's click surface */
+    margin-bottom: 10px;
+    display: block;
+}
+/* Green for active open issues */
+.card-open { border-top: 5px solid #2da44e !important; }
+
+/* Purple for API closed issues */
+.card-closed { border-top: 5px solid #8250df !important; }
+
+/* Blue for manual closed issues */
+.card-toggled-blue { border-top: 5px solid #0969da !important; }
+
+
+/* Priority Tag Base Style */
+.priority-tag {
+    float: right;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px; /* Slightly rounded for a modern look */
+}
+
+/* High Priority */
+.priority-high {
+    background-color: #FEECEC;
+    color: #EF4444;
+}
+
+/* Medium Priority */
+.priority-medium {
+    background-color: #FFF6D1;
+    color: #CCCCCC;
+}
+
+/* Low Priority */
+.priority-low {
+    background-color: #EEEFF2;
+    color: #9CA3AF;
+}
+
+
+/* Label Container */
+.label-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+/* Label Base */
+.label-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Unique Icon Mapping using pseudo-elements */
+.label-bug::before { content: "🐞"; }
+.label-enhancement::before { content: "✨"; }
+.label-documentation::before { content: "📚"; }
+.label-help-wanted::before { content: "🤝"; }
+.label-good-first-issue::before { content: "⭐"; }
+
+/* Colors for each label type */
+.label-bug { background: #fee7e7; color: #a40e26; border-color: #f7d0d0; }
+.label-enhancement { background: #e0f5ff; color: #0075d3; border-color: #c7eaff; }
+.label-documentation { background: #fff8c5; color: #705800; border-color: #fce899; }
+.label-help-wanted { background: #e5ffeb; color: #007a27; border-color: #c3e6cb; }
+.label-good-first-issue { background: #f0f0f0; color: #444; border-color: #ddd; }
+.issue-card {
+    position: relative;
+    padding: 20px; /* Assuming this is your card padding */
+    /* ... your other card styles ... */
+}
+
+/* Force the horizontal line to span the full width */
+.card-divider {
+    border: 0;
+    border-top: 1px solid #e1e4e8;
+    margin: 15px -20px; /* Negative margin pulls the line to the edges */
+}
+/* Modal content background */
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+}
+
+/* The light blue data box */
+.modal-data-box {
+    background-color: #F8FAFC;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    gap: 40px; /* Separates Assignee and Priority */
+    margin: 20px 0;
+}
+
+/* Badge styling */
+.badge-opened {
+    background: #10b981;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Modal meta spacing */
+.modal-top-meta {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+/* Modal Container Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+/* Main Modal Content Card */
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+}
+
+/* The light blue background for the data box */
+.modal-data-box {
+    background-color: #F8FAFC;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px; 
+    margin: 20px 0;
+}
+
+/* Badge styling for "Opened" status */
+.badge-opened {
+    background: #10b981;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Close button - Left aligned */
+#close-modal {
+    background-color: #4f46e5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+}
+/* Ensure labels in the modal look right */
+#modal-labels .label-tag {
+    margin-right: 8px; /* Adds space between labels */
+    font-size: 11px;
+}
+.modal-top-meta {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Ensure the Data Box aligns items to opposite ends */
+.modal-data-box {
+    background-color: #F8FAFC;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; /* Pushes Assignee left, Priority right */
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Footer container for the button */
+.modal-footer-right {
+    display: flex;
+    justify-content: flex-end; /* Pushes the button to the right */
+    margin-top: 20px;
+}
+
+/* Specific button styling */
+#close-modal {
+    background-color: #4f46e5;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
