@@ -222,6 +222,7 @@ async function handleSearch() {
         console.error("Search Error:", error);
     }
 
+    
     toggleLoader(false);
 }
 
