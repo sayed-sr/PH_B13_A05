@@ -9,6 +9,7 @@ const issuesGrid = document.getElementById('issues-grid');
 const tabs = document.querySelectorAll('.tab');
 const spinner = document.getElementById('loading-spinner');
 
+
 // 1. Auth Logic
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -50,7 +51,7 @@ function renderIssues(issues) {
     document.getElementById('issue-count').innerText = `${issues.length} Issues`;
 
     issues.forEach(issue => {
-        const isCurrentlyOpen = issue.manualClose ? (issue.status !== 'open') : (issue.status === 'open');
+       const isCurrentlyOpen = issue.manualClose ? (issue.status !== 'open') : (issue.status === 'open');
         const statusClass = issue.manualClose ? 'card-toggled-blue' : (isCurrentlyOpen ? 'card-open' : 'card-closed');
         const iconSrc = isCurrentlyOpen ? 'assets/Open-Status.png' : 'assets/Closed- Status.png';
 
@@ -124,17 +125,26 @@ tabs.forEach(tab => {
 });
 
 // 6. Modal Logic
+// 6. Modal Logic
 function showModal(issue) {
     const modal = document.getElementById('issue-modal');
+    document.getElementById('modal-title').innerText = issue.title;
+    document.getElementById('modal-description').innerText = issue.description;
+    document.getElementById('modal-author').innerText = issue.author;
+    document.getElementById('modal-date').innerText = new Date(issue.createdAt).toLocaleDateString();
+    document.getElementById('modal-assignee').innerText = issue.assignee || 'Unassigned';
     
-    // ... (populate title, author, date, description as before)
+    // Status Badge
+    const statusBadge = document.getElementById('modal-status-badge');
+    statusBadge.innerText = (issue.manualClose ? (issue.status === 'open' ? 'CLOSED' : 'OPEN') : issue.status.toUpperCase());
     
-    // The existing label logic will now render in the new position
-    const labelContainer = document.getElementById('modal-labels');
-    labelContainer.innerHTML = issue.labels.map(label => {
-        const slug = label.toLowerCase().replace(/\s+/g, '-');
-        return `<span class="label-tag label-${slug}">${label.toUpperCase()}</span>`;
-    }).join('');
+    // Priority
+    const pBadge = document.getElementById('modal-priority-badge');
+    pBadge.className = `priority-tag priority-${issue.priority.toLowerCase()}`;
+    pBadge.innerText = issue.priority.toUpperCase();
+
+    // Labels
+    document.getElementById('modal-labels').innerHTML = issue.labels.map(l => `<span class="label-tag label-${l.toLowerCase().replace(/\s+/g, '-')}">${l.toUpperCase()}</span>`).join('');
 
     modal.classList.remove('hidden');
 }
@@ -143,3 +153,84 @@ document.getElementById('close-modal').onclick = () => document.getElementById('
 function toggleLoader(show) {
     spinner.classList.toggle('hidden', !show);
 }
+// 1. Hook into your existing Search Input
+const searchInput = document.getElementById('issue-search'); 
+
+// 2. The Search Function
+async function handleSearch(query) {
+    const grid = document.querySelector('.issues-grid');
+
+    // If search is cleared, reload original data (don't leave a blank screen)
+    if (!query || query.trim() === "") {
+        await fetchAndRenderAllIssues();
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        // --- THE CRITICAL FIX ---
+        // Clear all existing cards first. This forces all non-matching 
+        // cards to "vanish" before we show the new ones.
+        grid.innerHTML = ''; 
+
+        // Check if the API returned any matches
+        if (data && data.length > 0) {
+            data.forEach(issue => {
+                // Use your existing card-creation logic
+                const card = createIssueCard(issue); 
+                grid.appendChild(card);
+            });
+        } else {
+            // Optional: Provide feedback if nothing matches
+            grid.innerHTML = '<p>No issues found matching your search.</p>';
+        }
+    } catch (error) {
+        console.error("Search API Error:", error);
+    }
+}
+
+
+// SEARCH FUNCTIONALITY
+const searchput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+
+async function handleSearch() {
+    const query = searchput.value.trim();
+
+    // If search is empty show all issues again
+    if (query === "") {
+        renderIssues(allIssues);
+        return;
+    }
+
+    toggleLoader(true);
+
+    try {
+        const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        if (data.data && data.data.length > 0) {
+            renderIssues(data.data);
+        } else {
+            issuesGrid.innerHTML = `<p style="padding:20px;">No issues found</p>`;
+            document.getElementById('issue-count').innerText = "0 Issues";
+        }
+
+    } catch (error) {
+        console.error("Search Error:", error);
+    }
+
+    toggleLoader(false);
+}
+
+// Search button click
+searchBtn.addEventListener("click", handleSearch);
+
+// Press Enter to search
+searchput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        handleSearch();
+    }
+});

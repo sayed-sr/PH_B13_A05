@@ -6,8 +6,39 @@
     --text-sub: #57606a;
     --open-color: #2da44e;
     --closed-color: #8250df;
+    --toggled-color: #0969da;
 }
 
+/* Card Status Borders */
+.card-open { border-top: 5px solid var(--open-color); }
+.card-closed { border-top: 5px solid var(--closed-color); }
+.card-toggled-blue { border-top: 5px solid var(--toggled-color); }
+
+.issue-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+    /* Do NOT put border-top: 5px solid ... here */
+}
+.modal-data-box {
+    background-color: #F8FAFC;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.modal-footer-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+/* ... rest of your existing CSS ... */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     margin: 0;
@@ -196,9 +227,9 @@ body {
 
 
 /* 1. Add this NEW class for the manual toggle state */
-.issue-card.card-toggled-blue { 
-    border-top: 5px solid #0969da !important; /* GitHub Blue */
-}
+/* .issue-card.card-toggled-blue { 
+    border-top: 5px solid #0969da !important; 
+} */
 
 /* 2. Ensure the icon looks like a clickable button */
 .status-toggle-icon {
@@ -308,14 +339,14 @@ body {
     margin-bottom: 10px;
     display: block;
 }
-/* Green for active open issues */
+/* Green for active open issues
 .card-open { border-top: 5px solid #2da44e !important; }
 
 /* Purple for API closed issues */
-.card-closed { border-top: 5px solid #8250df !important; }
+/* .card-closed { border-top: 5px solid #8250df !important; } */
 
 /* Blue for manual closed issues */
-.card-toggled-blue { border-top: 5px solid #0969da !important; }
+.card-toggled-blue { border-top: 5px solid #0969da !important; } 
 
 
 /* Priority Tag Base Style */
@@ -528,4 +559,18 @@ body {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.search-container input {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 250px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
